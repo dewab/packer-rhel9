@@ -56,7 +56,7 @@ source "vsphere-iso" "rhel9" {
   datacenter           = var.vsphere_datacenter
   datastore            = var.vsphere_datastore
   folder               = var.vsphere_folder
-  vm_name              = "${var.vm_name}"
+  vm_name              = var.vm_name
   notes                = local.vm_description
   dynamic "content_library_destination" {
     for_each = var.vsphere_content_library != null ? [1] : []
@@ -115,7 +115,7 @@ source "vsphere-iso" "rhel9" {
   ssh_password         = var.guest_password
   ssh_agent_auth       = var.vm_ssh_agent_auth
   ssh_timeout          = var.vm_ssh_timeout
-  ssh_handshake_timeout = var.vm_ssh_handshake_timeout
+  ssh_handshake_attempts = var.vm_ssh_handshake_attempts
   ip_wait_timeout      = var.vm_ip_timeout
   shutdown_timeout     = var.vm_shutdown_timeout
   shutdown_command     = "echo '${ var.guest_password }' | sudo -S shutdown -h now"

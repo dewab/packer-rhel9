@@ -18,13 +18,13 @@ variable "http_directory" {
 variable "vsphere_server" {
   type    = string
   default = ""
-  sensitive = true
+  sensitive = false
 }
 
 variable "vsphere_user" {
   type    = string
   default = "administrator@vsphere.local"
-  sensitive = true
+  sensitive = false
 }
 
 variable "vsphere_password" {
@@ -36,42 +36,42 @@ variable "vsphere_password" {
 variable "vsphere_datacenter" {
   type    = string
   default = ""
-  sensitive = true
+  sensitive = false
 }
 
 variable "vsphere_cluster" {
   type        = string
   default     = ""
   description = "The VMware Cluster name to build the Template"
-  sensitive = true
+  sensitive = false
 }
 
 variable "vsphere_network" {
   type        = string
   default     = ""
   description = "The VMware PortGroup name to build the Template"
-  sensitive = true
+  sensitive = false
 }
 
 variable "vsphere_datastore" {
   type        = string
   default     = ""
   description = "The VMware Datastore name to place the Template"
-  sensitive = true
+  sensitive = false
 }
 
 variable "vsphere_folder" {
   type        = string
   default     = ""
   description = "The VMware Folder Name name to place the Template"
-  sensitive = true
+  sensitive = false
 }
 
 variable "vsphere_insecure_connection" {
   type        = bool
   default     = "true"
   description = "Should the connection to vCenter be insecure? (true/false)"
-  sensitive = true
+  sensitive = false
 }
 
 # vSphere Content Library and Template Configuration
@@ -181,7 +181,7 @@ variable "vm-video-ram" {
 variable "guest_username" {
   type        = string
   default     = "Administrator"
-  sensitive   = true
+  sensitive   = false
   description = "Windows admin username used to login"
 }
 
