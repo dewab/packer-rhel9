@@ -43,7 +43,7 @@ data "vsphere_virtual_machine" "template" {
 }
 
 resource "vsphere_virtual_machine" "vm_clone" {
-    name = "test_vm"
+    name = "${data.vsphere_virtual_machine.template.name}-${var.iteration_id}"
     resource_pool_id = data.vsphere_compute_cluster.cluster.resource_pool_id
     datastore_id = data.vsphere_datastore.ds.id
     folder = var.vsphere_folder
@@ -70,11 +70,11 @@ resource "vsphere_virtual_machine" "vm_clone" {
 
     connection {
       type = "ssh"
-      user = "root"
-      password = "P@ssw0rd"
-      host     = vsphere_virtual_machine.vm_clone.default_ip_address
+      user = var.guest_username
+      password = var.guest_password
+      host = vsphere_virtual_machine.vm_clone.default_ip_address
       # This is needed as terraform defaults to scripts in /tmp which is mounted noexec in a hardened image
-      script_path = "/root/terraform.sh"
+      script_path = "/home/${var.guest_username}/terraform.sh"
     }
 
     provisioner "remote-exec" {
