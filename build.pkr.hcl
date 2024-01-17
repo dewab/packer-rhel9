@@ -118,7 +118,7 @@ source "vsphere-iso" "rhel9" {
   ssh_handshake_timeout = var.vm_ssh_handshake_timeout
   ip_wait_timeout      = var.vm_ip_timeout
   shutdown_timeout     = var.vm_shutdown_timeout
-  shutdown_command     = "echo '${ var.guest_password }' | sudo shutdown -h now"
+  shutdown_command     = "echo '${ var.guest_password }' | sudo -S shutdown -h now"
 
   # Below is to share the kickstart file
   // http_directory       = var.http_directory
