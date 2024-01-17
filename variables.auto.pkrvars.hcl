@@ -24,11 +24,9 @@ vm-firmware         = "efi-secure"
 ###############################################################################
 # OS Info
 ###############################################################################
-guest-username      = "root"
-guest-password      = "P@ssw0rd"
-guest-keyboard      = "us"
-guest-timezone      = "America/Chicago"
-guest-language      = "en_US"
+guest_keyboard      = "us"
+guest_timezone      = "America/Chicago"
+guest_language      = "en_US"
 
 ###############################################################################
 # OS Meta Data
@@ -44,28 +42,21 @@ guest_os_edition    = "Minimal"
 # Installation Media
 ###############################################################################
 
-# iso_checksum        = "none"
-iso_checksum        = "sha256:5c802147aa58429b21e223ee60e347e850d6b0d8680930c4ffb27340ffb687a8"
-iso_url             = "http://bifrost.viking.org/cdimages/Linux/RedHat/rhel-9.3-x86_64-dvd.iso"
+# iso_checksum = "none"
+iso_checksum = "sha256:a387f3230acf87ee38707ee90d3c88f44d7bf579e6325492f562f0f1f9449e89"
+# iso_url = "http://bifrost.viking.org/cdimages/Linux/RedHat/rhel-9.3-x86_64-dvd.iso"
+iso_url = "https://web.rhel.ccplano.lab/rhel-baseos-9.0-x86_64-dvd.iso"
 
 http_directory      = "files/"
 
 ###############################################################################
 # Provisioner Settings
 ###############################################################################
-floppy_files = [
-  "files/ks.cfg"
-]
-
+floppy_files = []
 cd_label = "kickstart"
-cd_files = [
-  "files/ks.cfg"
-]
-  
+cd_files = [] 
 script_files_group_1 = []
-
 script_files_group_2 = []
-
 phase2_inline = [
   "dnf update -y",
   "dnf clean all"
