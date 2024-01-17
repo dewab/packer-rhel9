@@ -279,7 +279,17 @@ variable "phase2_inline" {
 variable "vm_ssh_timeout" {
     type        = string
     description = "Set the timeout for the VM to obtain an SSH connection (e.g. '1h5m2s' or '2s')"
-    default     = "3h"
+    default     = "30m"
+}
+variable "vm_ssh_agent_auth" {
+    type        = bool
+    description = "Enable SSH Agent Authentication?"
+    default     = false
+}
+variable "vm_ssh_handshake_attempts" {
+    type        = number
+    description = "Set the number of SSH handshake attempts"
+    default     = 10
 }
 variable "vm_ip_timeout" {
     type        = string

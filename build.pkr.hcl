@@ -113,11 +113,12 @@ source "vsphere-iso" "rhel9" {
   communicator         = "ssh"  
   ssh_username         = var.guest_username
   ssh_password         = var.guest_password
-  ssh_agent_auth       = "true"
+  ssh_agent_auth       = var.vm_ssh_agent_auth
   ssh_timeout          = var.vm_ssh_timeout
+  ssh_handshake_timeout = var.vm_ssh_handshake_timeout
   ip_wait_timeout      = var.vm_ip_timeout
   shutdown_timeout     = var.vm_shutdown_timeout
-  shutdown_command     = "sudo shutdown -P now"
+  shutdown_command     = "echo '${ var.guest_password }' | sudo shutdown -h now"
 
   # Below is to share the kickstart file
   // http_directory       = var.http_directory
