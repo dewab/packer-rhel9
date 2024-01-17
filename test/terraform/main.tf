@@ -12,7 +12,8 @@ variable "iteration_id" {
 data "hcp_packer_image" "vm_clone" {
   bucket_name = "redhat"
   cloud_provider = "vsphere"
-  region = "Lab"
+  # region = "Lab"
+  region = var.vsphere_datacenter
   iteration_id = var.iteration_id
   # channel = "latest"
 }
@@ -39,15 +40,6 @@ data "vsphere_compute_cluster" "cluster" {
 data "vsphere_virtual_machine" "template" {
     name = data.hcp_packer_image.vm_clone.cloud_image_id
     datacenter_id = data.vsphere_datacenter.dc.id
-}
-
-data "vsphere_tag_category" "environment" {
-  name = "environment"
-}
-
-data "vsphere_tag" "development" {
-  name          = "development"
-  category_id   = data.vsphere_tag_category.environment.id
 }
 
 resource "vsphere_virtual_machine" "vm_clone" {
