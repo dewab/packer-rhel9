@@ -8,7 +8,7 @@
 ###############################################################################
 # VM Hardware 
 ###############################################################################
-vm-name             = "RHEL93-Template"
+vm_name             = "RHEL93-Template"
 # https://code.vmware.com/apis/358/vsphere/doc/vim.vm.GuestOsDescriptor.GuestOsIdentifier.html
 vm-os-type          = "rhel9_64Guest"
 vm-cpu-num          = 2

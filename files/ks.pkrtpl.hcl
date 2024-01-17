@@ -2,13 +2,13 @@
 eula --agreed
 
 # Keyboard layouts
-keyboard ${guest-keyboard}
+keyboard ${guest_keyboard}
 
 # Root password
-rootpw ${guest-password}
+rootpw ${guest_password}
 
 # System language
-lang ${guest-language}
+lang ${guest_language}
 
 # Firewall configuration
 firewall --enabled --ssh
@@ -50,7 +50,7 @@ network  --bootproto=dhcp --device=eth0
 reboot
 
 # System timezone
-timezone ${guest-timezone} 
+timezone ${guest_timezone} 
 timesource --ntp-pool pool.ntp.org
 
 # System bootloader configuration

@@ -32,11 +32,11 @@ locals {
     build_date                  = formatdate("YYYY-MM-DD hh:mm ZZZ", timestamp())
     cd_content                  = {
         "ks.cfg" = templatefile("${abspath(path.root)}/files/ks.pkrtpl.hcl", {
-            guest-password = var.guest-password
-            guest-username = var.guest-username
-            guest-keyboard = var.guest-keyboard
-            guest-timezone = var.guest-timezone
-            guest-language = var.guest-language
+            guest_password = var.guest_password
+            guest_username = var.guest_username
+            guest_keyboard = var.guest_keyboard
+            guest_timezone = var.guest_timezone
+            guest_language = var.guest_language
           })
       }
     vm_description              = "Built automatically by Daniel Whicker's Packer scripts\nVER: ${ local.build_version }\nDATE: ${ local.build_date }\n"
@@ -55,14 +55,14 @@ source "vsphere-iso" "rhel9" {
   datacenter           = var.vsphere_datacenter
   datastore            = var.vsphere_datastore
   folder               = var.vsphere_folder
-  vm_name              = "${var.vm-name}-Base"
+  vm_name              = "${var.vm_name}"
   notes                = local.vm_description
   dynamic "content_library_destination" {
     for_each = var.vsphere_content_library != null ? [1] : []
         content {
             library         = var.vsphere_content_library
             # name            = "${ source.name }"
-            name            = var.vm-name
+            name            = var.vm_name
             description     = local.vm_description
             ovf             = var.vsphere_content_library_ovf
             destroy         = var.vsphere_content_library_destroy
@@ -110,8 +110,8 @@ source "vsphere-iso" "rhel9" {
     
   # Remote Access
   communicator         = "ssh"  
-  ssh_username         = var.guest-username
-  ssh_password         = var.guest-password
+  ssh_username         = var.guest_username
+  ssh_password         = var.guest_password
   ssh_agent_auth       = "true"
   ssh_timeout          = var.vm_ssh_timeout
   ip_wait_timeout      = var.vm_ip_timeout
