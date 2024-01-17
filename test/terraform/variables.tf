@@ -53,3 +53,15 @@ variable "guest_redhat_password" {
   type = string
   sensitive = true
 }
+
+variable "guest_username" {
+  description = "Guest OS username"
+  type        = string
+  sensitive = true
+}
+
+variable "guest_password" {
+  description = "Guest OS password"
+  type = string
+  sensitive = true
+}
