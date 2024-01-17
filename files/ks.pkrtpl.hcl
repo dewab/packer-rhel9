@@ -92,6 +92,7 @@ logvol /home --fstype="xfs" --size=2048 --thin --poolname=pool00 --name=home --v
 
 # Add Local Users
 # user --name=ansible --gecos="Ansible User" --shell=/bin/zsh --groups=wheel --homedir=/home/ansible --iscrypted --password=$1$HwxHHo..$MXcBMTTvTwK3ENKrsQH0W1
+user --name=${guest_username} --gecos="User" --shell=/usr/bin/zsh --groups=wheel --homedir=/home/${guest_username} --iscrypted --password=${guest_password_encrypted}
 
 # Add SSH keys to local users
 sshkey --user=root  "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFaiZxQuPBgezB4eeFcYfFHy3Du6KvwFvdWqx5QsMNqC Daniel@snotra.viking.org"
