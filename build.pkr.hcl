@@ -33,13 +33,14 @@ locals {
     cd_content                  = {
         "ks.cfg" = templatefile("${abspath(path.root)}/files/ks.pkrtpl.hcl", {
             guest_password = var.guest_password
+            guest_password_encrypted = var.guest_password_encrypted
             guest_username = var.guest_username
             guest_keyboard = var.guest_keyboard
             guest_timezone = var.guest_timezone
             guest_language = var.guest_language
           })
       }
-    vm_description              = "Built automatically by Daniel Whicker's Packer scripts\nVER: ${ local.build_version }\nDATE: ${ local.build_date }\n"
+    vm_description = "Built automatically by Daniel Whicker's Packer scripts\nVER: ${ local.build_version }\nDATE: ${ local.build_date }\n"
 }
 
 ###############################################################################
