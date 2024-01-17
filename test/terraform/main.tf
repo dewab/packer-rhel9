@@ -68,8 +68,6 @@ resource "vsphere_virtual_machine" "vm_clone" {
         linked_clone = true
     }
 
-    tags = [ data.vsphere_tag.development.id ]
-
     connection {
       type = "ssh"
       user = "root"
