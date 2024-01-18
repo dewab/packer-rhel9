@@ -45,23 +45,23 @@ variable "vsphere_folder" {
 variable "guest_redhat_user" {
   description = "Red Hat Cloud username"
   type        = string
-  sensitive = true
+  # sensitive = true
 }
 
 variable "guest_redhat_password" {
   description = "Red Hat Cloud password"
   type = string
-  sensitive = true
+  # sensitive = true
 }
 
 variable "guest_username" {
   description = "Guest OS username"
   type        = string
-  sensitive = true
+  # sensitive = true
 }
 
 variable "guest_password" {
   description = "Guest OS password"
   type = string
-  sensitive = true
+  # sensitive = true
 }
