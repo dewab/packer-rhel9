@@ -44,8 +44,8 @@ guest_os_edition    = "Minimal"
 
 # iso_checksum = "none"
 iso_checksum = "sha256:a387f3230acf87ee38707ee90d3c88f44d7bf579e6325492f562f0f1f9449e89"
-# iso_url = "http://bifrost.viking.org/cdimages/Linux/RedHat/rhel-9.3-x86_64-dvd.iso"
-iso_url = "https://web.rhel.ccplano.lab/rhel-baseos-9.0-x86_64-dvd.iso"
+iso_url = "http://bifrost.viking.org/cdimages/Linux/RedHat/rhel-9.3-x86_64-dvd.iso"
+# iso_url = "https://web.rhel.ccplano.lab/rhel-baseos-9.0-x86_64-dvd.iso"
 
 http_directory      = "files/"
 
