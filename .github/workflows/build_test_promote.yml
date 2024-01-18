@@ -131,9 +131,9 @@ jobs:
         uses: actions/checkout@v2
       
       - name: Promote Iteration to Dev
-        working-directory: ./test/scripts
+        working-directory: ./.github/scripts
         run: ./set_iteration.sh "redhat" "development" "${{ needs.build.outputs.iteration_id }}"
       
       - name: Promote Iteration to Staging
-        working-directory: ./test/scripts
+        working-directory: ./.github/scripts
         run: ./set_iteration.sh "redhat" "staging" "${{ needs.build.outputs.iteration_id }}"
