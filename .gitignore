@@ -1,0 +1,16 @@
+credentials.json
+**/packer_cache
+**/pkr
+**/vsphere.pkrvars.hcl
+**/isos
+**/credentials*
+.DS_Store
+**/.envrc
+**/packer_manifest.json
+**/manifest.txt
+**/manifest.json
+**/*.iso
+**/.terraform
+**/.terraform.lock.hcl
+**/terraform.tfstate
+**/terraform.tfstate.backup
