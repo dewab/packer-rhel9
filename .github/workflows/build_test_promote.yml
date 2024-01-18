@@ -33,11 +33,11 @@ env:
   TF_VAR_vsphere_datastore: ${{ vars.VSPHERE_DATASTORE }}
   TF_VAR_vsphere_network: ${{ vars.VSPHERE_NETWORK }}
   TF_VAR_vsphere_folder: ${{ vars.VSPHERE_FOLDER }}
-  TF_VAR_guest_redhat_user: ${{ secrets.REDHAT_USER }}
+  TF_VAR_guest_redhat_user: ${{ vars.REDHAT_USER }}
   TF_VAR_guest_redhat_password: ${{ secrets.REDHAT_PASSWORD }}
   TF_VAR_guest_username: ${{ vars.GUEST_USERNAME }}
-  TF_VAR_guest_password: ${{ vars.GUEST_PASSWORD }}
-  TF_VAR_guest_password_encrypted: ${{ vars.GUEST_PASSWORD_ENCRYPTED }}
+  TF_VAR_guest_password: ${{ secrets.GUEST_PASSWORD }}
+  TF_VAR_guest_password_encrypted: ${{ secrets.GUEST_PASSWORD_ENCRYPTED }}
   HCP_PROJECT_ID: ${{ vars.HCP_PROJECT_ID }}
   HCP_ORGANIZATION_ID: ${{ vars.HCP_ORGANIZATION_ID }}
   HCP_CLIENT_ID: ${{ vars.HCP_CLIENT_ID }}
