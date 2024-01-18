@@ -75,6 +75,7 @@ resource "vsphere_virtual_machine" "vm_clone" {
       host = vsphere_virtual_machine.vm_clone.default_ip_address
       # This is needed as terraform defaults to scripts in /tmp which is mounted noexec in a hardened image
       script_path = "/home/${var.guest_username}/terraform.sh"
+      timeout = "30m"
     }
 
     provisioner "remote-exec" {
