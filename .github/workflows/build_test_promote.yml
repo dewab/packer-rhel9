@@ -139,8 +139,9 @@ jobs:
       
       - name: Promote Iteration to Dev
         working-directory: ./.github/scripts
-        run: ./set_iteration.sh "redhat" "development" "${{ needs.build.outputs.iteration_id }}"
-      
+        run: ./set_iteration.sh "${{ vars.HCP_BUCKET }}" "development" "${{ needs.build.outputs.iteration_id }}"
+        
       - name: Promote Iteration to Staging
         working-directory: ./.github/scripts
-        run: ./set_iteration.sh "redhat" "staging" "${{ needs.build.outputs.iteration_id }}"
+        run: ./set_iteration.sh "${{ vars.HCP_BUCKET }}" "staging" "${{ needs.build.outputs.iteration_id }}"
+
