@@ -49,6 +49,8 @@ env:
   HCP_ORGANIZATION_ID: ${{ vars.HCP_ORGANIZATION_ID }}
   HCP_CLIENT_ID: ${{ vars.HCP_CLIENT_ID }}
   HCP_CLIENT_SECRET: ${{ secrets.HCP_CLIENT_SECRET }}
+  HCP_BUCKET: ${{ vars.HCP_BUCKET }}
+    
 
 jobs:
   build:
