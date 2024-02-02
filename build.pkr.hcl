@@ -124,11 +124,12 @@ source "vsphere-iso" "rhel9" {
   // http_directory       = var.http_directory
 
   # Below is required to boot ISO with EFI
-  boot_wait            = "3s"
-  boot_command         = [
-    // "<up>e<down><down><end> inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<leftCtrlOn>x<leftCtrlOff>"
-    "<up>e<down><down><end> inst.text inst.ks=cdrom <leftCtrlOn>x<leftCtrlOff>"
-  ]
+  boot_wait = "3s"
+  boot_command = var.boot_command
+  # boot_command         = [
+  #   // "<up>e<down><down><end> inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<leftCtrlOn>x<leftCtrlOff>"
+  #   "<up>e<down><down><end> inst.text inst.ks=cdrom <leftCtrlOn>x<leftCtrlOff>"
+  # ]
 }
 
 ###############################################################################
@@ -139,25 +140,35 @@ build {
     hcp_packer_registry {
     bucket_name = "redhat"
     description = <<EOT
-Some nice description about the image being published to HCP Packer Registry.
+      Some nice description about the image being published to HCP Packer Registry.
     EOT
     bucket_labels = {
-      "owner"                       = "platform-team"
-      "os"                          = "Red Hat Enterprise Linux"
-      "redhat-version"              = "9.3"
+      "owner" = "platform-team"
+      "os" = "Red Hat Enterprise Linux"
+      "redhat-version" = "9.3"
     }
 
     build_labels = {
-      "build-time"                            = timestamp()
-      "build-source"                          = basename(path.cwd)
-      "network-configuration"                 = "DHCP"
+      "build-time" = timestamp()
+      "build-source" = basename(path.cwd)
+      "network-configuration" = "DHCP"
     }
   }
 
   sources = ["source.vsphere-iso.rhel9"]
+
+  provisioner "shell" {
+    # Variables cannot be passed through from the pkrvars file to this script -- they need to be set here.
+    inline = [
+      "echo '${var.guest_password}' | sudo -S subscription-manager register --username=${var.guest_redhat_user} --password=${var.guest_redhat_password}",
+      "echo '${var.guest_password}' | sudo -S yum update -y",
+      "echo '${var.guest_password}' | sudo -S subscription-manager unregister"
+    ]
+    remote_folder = "/home/${var.guest_username}/"
+  }  
   
   post-processor "manifest" {
-    output     = "packer_manifest.json"
+    output = "packer_manifest.json"
     strip_path = true
     custom_data = {
       vsphere_cluster = var.vsphere_cluster

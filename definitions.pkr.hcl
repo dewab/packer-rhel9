@@ -178,6 +178,12 @@ variable "vm-video-ram" {
   description = "Amount of memory to use for video?"
 }
 
+variable "boot_command" {
+  type        = list(string)
+  default     = []
+  description = "The boot command to use for the guest OS"
+}
+
 variable "guest_username" {
   type        = string
   default     = "Administrator"
@@ -269,10 +275,10 @@ variable "inline_cmds" {
   description = "A list of commands that will be run on the VM"
 }
 
-variable "phase2_inline" {
+variable "inline_commands" {
   type        = list(string)
   default     = []
-  description = "A list of commands that will be run on the VM during phase 2"
+  description = "A list of commands that will be run on the VM during build"
 }
 
 # Timeout Settings
@@ -332,4 +338,17 @@ variable "guest_os_architecture" {
     type        = string
     description = "The Guest OS Architecture (e.g. 'x86_64' or 'x86')"
     default     = "x86_64"
+}
+
+# Used for RHN registration
+variable "guest_redhat_user" {
+    type        = string
+    description = "The Red Hat Network Username"
+    default     = ""
+}
+variable "guest_redhat_password" {
+    type        = string
+    description = "The Red Hat Network Password"
+    sensitive   = true
+    default     = ""
 }

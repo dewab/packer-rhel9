@@ -8,7 +8,7 @@
 ###############################################################################
 # VM Hardware 
 ###############################################################################
-vm_name             = "RHEL93-Template"
+vm_name             = "RHEL9-Template"
 # https://code.vmware.com/apis/358/vsphere/doc/vim.vm.GuestOsDescriptor.GuestOsIdentifier.html
 vm-os-type          = "rhel9_64Guest"
 vm-cpu-num          = 2
@@ -49,7 +49,10 @@ guest_os_edition    = "Minimal"
 iso_checksum = "sha256:5c802147aa58429b21e223ee60e347e850d6b0d8680930c4ffb27340ffb687a8"
 iso_url = "https://filebrowser.home.bifrost.cc/api/public/dl/lEn5J2-a/cdimages/Linux/RedHat/rhel-9.3-x86_64-dvd.iso"
 
-http_directory      = "files/"
+http_directory = "files/"
+boot_command = [
+  "<up>e<down><down><end> inst.text inst.ks=cdrom <leftCtrlOn>x<leftCtrlOff>"
+]
 
 ###############################################################################
 # Provisioner Settings
@@ -59,7 +62,4 @@ cd_label = "kickstart"
 cd_files = [] 
 script_files_group_1 = []
 script_files_group_2 = []
-phase2_inline = [
-  "dnf update -y",
-  "dnf clean all"
-]
+inline_commands = []
