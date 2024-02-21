@@ -4,9 +4,6 @@ This repository contains a Packer template for building Red Hat 9.x vSphere Temp
 
 ![latest build](https://github.com/dewab/packer-rhel9/actions/workflows/build_test_promote.yml/badge.svg)
 
-relative path
-![latest build](/actions/workflows/build_test_promote.yml/badge.svg)
-
 ## Prerequisites
 
 - Packer (for building)
