@@ -5,7 +5,7 @@ This repository contains a Packer template for building Red Hat 9.x vSphere Temp
 ![latest build](https://github.com/dewab/packer-rhel9/actions/workflows/build_test_promote.yml/badge.svg)
 
 relative path
-![latest build](actions/workflows/build_test_promote.yml/badge.svg)
+![latest build](/actions/workflows/build_test_promote.yml/badge.svg)
 
 ## Prerequisites
 
@@ -42,6 +42,8 @@ export PKR_VAR_vsphere_folder="<vSphere templates folder>"
 export PKR_VAR_guest_username="<local username / admin username>"
 export PKR_VAR_guest_password="<password>"
 export PKR_VAR_guest_password_encrypted='<sha512 cryped version of above password>'
+export PKR_VAR_guest_redhat_user="<RedHat RHN User Name>"
+export PKR_VAR_guest_redhat_password="<RedHat RHN Password/Token>"
 export HCP_CLIENT_ID="<client id>"
 export HCP_CLIENT_SECRET="<client secret>"
 export HCP_PROJECT_ID="<project id>"
