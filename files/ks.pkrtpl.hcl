@@ -82,7 +82,6 @@ logvol /home --fstype="xfs" --size=2048 --thin --poolname=pool00 --name=home --v
 ## USERS
 
 # Add Local Users
-#user --name=${guest_username} --gecos="User" --shell=/usr/bin/zsh --groups=wheel --homedir=/home/${guest_username} --iscrypted --password=${guest_password_encrypted}
 user --name=${guest_username} --gecos="User" --shell=/usr/bin/zsh --groups=wheel --homedir=/home/${guest_username} --password=${guest_password}
 
 # Add SSH keys to local users

@@ -210,12 +210,6 @@ variable "guest_password" {
   description = "Guest password used to login"
 }
 
-# variable "guest_password_encrypted" {
-#   type        = string
-#   sensitive   = true
-#   description = "What is the encrypted password of the Administrative user?"
-# }
-
 variable "guest_language" {
   type        = string
   default     = "en_US"
