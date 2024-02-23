@@ -64,7 +64,7 @@ jobs:
         with:
           url: ${{ secrets.VAULT_ADDR }}
           token: ${{ secrets.VAULT_TOKEN }}
-          caCertificate: ${{ secrets.VAULT_CA_CERT }}
+          caCertificate: ${{ secrets.VAULT_CA }}
           secrets: |
             vcenter/vcsa.lab.local username | PKR_VAR_vsphere_user ;
             vcenter/vcsa.lab.local password | PKR_VAR_vsphere_password ;
@@ -123,7 +123,7 @@ jobs:
         with:
           url: ${{ secrets.VAULT_ADDR }}
           token: ${{ secrets.VAULT_TOKEN }}
-          caCertificate: ${{ secrets.VAULT_CA_CERT }}
+          caCertificate: ${{ secrets.VAULT_CA }}
           secrets: |
             vcenter/vcsa.lab.local username | TF_VAR_vsphere_user ;
             vcenter/vcsa.lab.local password | TF_VAR_vsphere_password ;
@@ -183,7 +183,7 @@ jobs:
         with:
           url: ${{ secrets.VAULT_ADDR }}
           token: ${{ secrets.VAULT_TOKEN }}
-          caCertificate: ${{ secrets.VAULT_CA_CERT }}
+          caCertificate: ${{ secrets.VAULT_CA }}
           secrets: |
             hashicorp-cloud-platform/packer project_id | HCP_PROJECT_ID ;
             hashicorp-cloud-platform/packer organization_id | HCP_ORGANIZATION_ID ;
