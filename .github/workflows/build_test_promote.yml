@@ -6,9 +6,6 @@ on:
       - main
       - master
 
-  release:
-    types: [published]
-
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -21,36 +18,36 @@ on:
 
 env:
   PRODUCT_VERSION: "latest"
-  PKR_VAR_vsphere_server: ${{ vars.VSPHERE_SERVER }}
-  PKR_VAR_vsphere_user: ${{ vars.VSPHERE_USER }}
-  PKR_VAR_vsphere_password: ${{ secrets.VSPHERE_PASSWORD }}
+  # PKR_VAR_vsphere_server: ${{ vars.VSPHERE_SERVER }}
+  # PKR_VAR_vsphere_user: ${{ vars.VSPHERE_USER }}
+  # PKR_VAR_vsphere_password: ${{ secrets.VSPHERE_PASSWORD }}
   PKR_VAR_vsphere_cluster: ${{ vars.VSPHERE_CLUSTER }}
   PKR_VAR_vsphere_datacenter: ${{ vars.VSPHERE_DATACENTER }}
   PKR_VAR_vsphere_datastore: ${{ vars.VSPHERE_DATASTORE }}
   PKR_VAR_vsphere_network: ${{ vars.VSPHERE_NETWORK }}
   PKR_VAR_vsphere_folder: ${{ vars.VSPHERE_FOLDER }}
-  PKR_VAR_guest_username: ${{ vars.GUEST_USERNAME }}
-  PKR_VAR_guest_password: ${{ secrets.GUEST_PASSWORD }}
-  PKR_VAR_guest_password_encrypted: ${{ secrets.GUEST_PASSWORD_ENCRYPTED }}
-  PKR_VAR_guest_redhat_user: ${{ vars.REDHAT_USER }}
-  PKR_VAR_guest_redhat_password: ${{ secrets.REDHAT_PASSWORD }}  
-  TF_VAR_vsphere_server: ${{ vars.VSPHERE_SERVER }}
-  TF_VAR_vsphere_user: ${{ vars.VSPHERE_USER }}
-  TF_VAR_vsphere_password: ${{ secrets.VSPHERE_PASSWORD }}
+  # PKR_VAR_guest_username: ${{ vars.GUEST_USERNAME }}
+  # PKR_VAR_guest_password: ${{ secrets.GUEST_PASSWORD }}
+  # PKR_VAR_guest_password_encrypted: ${{ secrets.GUEST_PASSWORD_ENCRYPTED }}
+  # PKR_VAR_guest_redhat_user: ${{ vars.REDHAT_USER }}
+  # PKR_VAR_guest_redhat_password: ${{ secrets.REDHAT_PASSWORD }}  
+  # TF_VAR_vsphere_server: ${{ vars.VSPHERE_SERVER }}
+  # TF_VAR_vsphere_user: ${{ vars.VSPHERE_USER }}
+  # TF_VAR_vsphere_password: ${{ secrets.VSPHERE_PASSWORD }}
   TF_VAR_vsphere_cluster: ${{ vars.VSPHERE_CLUSTER }}
   TF_VAR_vsphere_datacenter: ${{ vars.VSPHERE_DATACENTER }}
   TF_VAR_vsphere_datastore: ${{ vars.VSPHERE_DATASTORE }}
   TF_VAR_vsphere_network: ${{ vars.VSPHERE_NETWORK }}
   TF_VAR_vsphere_folder: ${{ vars.VSPHERE_FOLDER }}
-  TF_VAR_guest_redhat_user: ${{ vars.REDHAT_USER }}
-  TF_VAR_guest_redhat_password: ${{ secrets.REDHAT_PASSWORD }}
-  TF_VAR_guest_username: ${{ vars.GUEST_USERNAME }}
-  TF_VAR_guest_password: ${{ secrets.GUEST_PASSWORD }}
-  TF_VAR_guest_password_encrypted: ${{ secrets.GUEST_PASSWORD_ENCRYPTED }}
-  HCP_PROJECT_ID: ${{ vars.HCP_PROJECT_ID }}
-  HCP_ORGANIZATION_ID: ${{ vars.HCP_ORGANIZATION_ID }}
-  HCP_CLIENT_ID: ${{ vars.HCP_CLIENT_ID }}
-  HCP_CLIENT_SECRET: ${{ secrets.HCP_CLIENT_SECRET }}
+  # TF_VAR_guest_redhat_user: ${{ vars.REDHAT_USER }}
+  # TF_VAR_guest_redhat_password: ${{ secrets.REDHAT_PASSWORD }}
+  # TF_VAR_guest_username: ${{ vars.GUEST_USERNAME }}
+  # TF_VAR_guest_password: ${{ secrets.GUEST_PASSWORD }}
+  # TF_VAR_guest_password_encrypted: ${{ secrets.GUEST_PASSWORD_ENCRYPTED }}
+  # HCP_PROJECT_ID: ${{ vars.HCP_PROJECT_ID }}
+  # HCP_ORGANIZATION_ID: ${{ vars.HCP_ORGANIZATION_ID }}
+  # HCP_CLIENT_ID: ${{ vars.HCP_CLIENT_ID }}
+  # HCP_CLIENT_SECRET: ${{ secrets.HCP_CLIENT_SECRET }}
   HCP_BUCKET: ${{ vars.HCP_BUCKET }}
     
 
@@ -61,6 +58,28 @@ jobs:
     outputs:
       iteration_id: ${{ steps.hcp.outputs.iteration_id }}    
     steps:
+
+      - name: Import Secrets
+        uses: hashicorp/vault-action@v2.4.0
+        with:
+          url: ${{ secrets.VAULT_ADDR }}
+          token: ${{ secrets.VAULT_TOKEN }}
+          caCertificate: ${{ secrets.VAULT_CA_CERT }}
+          secrets: |
+            vcenter/vcsa.lab.local username | PKR_VAR_vsphere_user ;
+            vcenter/vcsa.lab.local password | PKR_VAR_vsphere_password ;
+            vcenter/vcsa.lab.local hostname | PKR_VAR_vsphere_server ;
+            guest_defaults/linux/guest/username | PKR_VAR_guest_username ;
+            guest_defaults/linux/guest/password | PKR_VAR_guest_password ;
+            guest_defaults/linux/admin/username | PKR_VAR_admin_username ;
+            guest_defaults/linux/admin/password | PKR_VAR_admin_password ;
+            redhat/rhn/username | PKR_VAR_guest_redhat_user ;
+            redhat/rhn/password | PKR_VAR_guest_redhat_password ;
+            hashicorp-cloud-platform/packer/project_id | HCP_PROJECT_ID ;
+            hashicorp-cloud-platform/packer/organization_id | HCP_ORGANIZATION_ID ;
+            hashicorp-cloud-platform/packer/client_id | HCP_CLIENT_ID ;
+            hashicorp-cloud-platform/packer/client_secret | HCP_CLIENT_SECRET ;
+            
       - name: Checkout
         uses: actions/checkout@v3
 
@@ -99,6 +118,27 @@ jobs:
     needs: build
     runs-on: [self-hosted, Linux, X64]
     steps:
+      - name: Import Secrets
+        uses: hashicorp/vault-action@v2.4.0
+        with:
+          url: ${{ secrets.VAULT_ADDR }}
+          token: ${{ secrets.VAULT_TOKEN }}
+          caCertificate: ${{ secrets.VAULT_CA_CERT }}
+          secrets: |
+            vcenter/vcsa.lab.local username | TF_VAR_vsphere_user ;
+            vcenter/vcsa.lab.local password | TF_VAR_vsphere_password ;
+            vcenter/vcsa.lab.local hostname | TF_VAR_vsphere_server ;
+            guest_defaults/linux/guest/username | TF_VAR_guest_username ;
+            guest_defaults/linux/guest/password | TF_VAR_guest_password ;
+            guest_defaults/linux/admin/username | TF_VAR_admin_username ;
+            guest_defaults/linux/admin/password | TF_VAR_admin_password ;
+            redhat/rhn/username | TF_VAR_guest_redhat_user ;
+            redhat/rhn/password | TF_VAR_guest_redhat_password ;
+            hashicorp-cloud-platform/packer/project_id | HCP_PROJECT_ID ;
+            hashicorp-cloud-platform/packer/organization_id | HCP_ORGANIZATION_ID ;
+            hashicorp-cloud-platform/packer/client_id | HCP_CLIENT_ID ;
+            hashicorp-cloud-platform/packer/client_secret | HCP_CLIENT_SECRET ;
+
       - name: Checkout Repository
         uses: actions/checkout@v2
       
@@ -138,6 +178,18 @@ jobs:
     needs: ['build', 'test'] # this will automatically be skipped if the test job fails
     runs-on: [self-hosted, Linux, X64]
     steps:
+      - name: Import Secrets
+        uses: hashicorp/vault-action@v2.4.0
+        with:
+          url: ${{ secrets.VAULT_ADDR }}
+          token: ${{ secrets.VAULT_TOKEN }}
+          caCertificate: ${{ secrets.VAULT_CA_CERT }}
+          secrets: |
+            hashicorp-cloud-platform/packer/project_id | HCP_PROJECT_ID ;
+            hashicorp-cloud-platform/packer/organization_id | HCP_ORGANIZATION_ID ;
+            hashicorp-cloud-platform/packer/client_id | HCP_CLIENT_ID ;
+            hashicorp-cloud-platform/packer/client_secret | HCP_CLIENT_SECRET ;
+
       - name: Checkout Repository
         uses: actions/checkout@v2
       

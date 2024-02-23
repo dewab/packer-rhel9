@@ -120,9 +120,6 @@ source "vsphere-iso" "rhel9" {
   shutdown_timeout     = var.vm_shutdown_timeout
   shutdown_command     = "echo '${ var.guest_password }' | sudo -S shutdown -h now"
 
-  # Below is to share the kickstart file
-  // http_directory       = var.http_directory
-
   # Below is required to boot ISO with EFI
   boot_wait = "3s"
   boot_command = var.boot_command
