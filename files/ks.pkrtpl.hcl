@@ -5,7 +5,7 @@ eula --agreed
 keyboard ${guest_keyboard}
 
 # Root password
-rootpw ${guest_password}
+rootpw ${admin_password}
 
 # System language
 lang ${guest_language}
@@ -24,15 +24,6 @@ selinux --enforcing
 
 # Do not configure the X Window System
 skipx
-
-# Instal EPEL Repo
-#repo --name=epel --baseurl=http://dl.fedoraproject.org/pub/epel/8/Everything/x86_64/
-
-# Use NFS installation method
-#nfs --server=192.168.10.10 --dir=/data/yumrepo/rhel83/
-
-# Use HTTP Installation method
-#url --url="http://192.168.10.10/yumrepo/rhel83/"
 
 # Use CDROM Installation method
 cdrom
@@ -91,8 +82,8 @@ logvol /home --fstype="xfs" --size=2048 --thin --poolname=pool00 --name=home --v
 ## USERS
 
 # Add Local Users
-# user --name=ansible --gecos="Ansible User" --shell=/bin/zsh --groups=wheel --homedir=/home/ansible --iscrypted --password=$1$HwxHHo..$MXcBMTTvTwK3ENKrsQH0W1
-user --name=${guest_username} --gecos="User" --shell=/usr/bin/zsh --groups=wheel --homedir=/home/${guest_username} --iscrypted --password=${guest_password_encrypted}
+#user --name=${guest_username} --gecos="User" --shell=/usr/bin/zsh --groups=wheel --homedir=/home/${guest_username} --iscrypted --password=${guest_password_encrypted}
+user --name=${guest_username} --gecos="User" --shell=/usr/bin/zsh --groups=wheel --homedir=/home/${guest_username} --password=${guest_password}
 
 # Add SSH keys to local users
 sshkey --user=root  "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFaiZxQuPBgezB4eeFcYfFHy3Du6KvwFvdWqx5QsMNqC Daniel@snotra.viking.org"
@@ -100,9 +91,6 @@ sshkey --user=root  "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAge61e/yBUzGqAjtPpmcFd
 sshkey --user=root  "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHY9ElZqwcAwOtQmrCK6iBLtajwLoiW4s23OwIcyq08z heimdall@bifrost.viking.org"
 
 ## END USERS
-
-# Attempt to join ipa
-#realm join --one-time-password=P@ssw0rd LAB.LOCAL
 
 ## Software
 %packages
@@ -135,5 +123,8 @@ iperf3
 # Add ansible to local sudoers with NOPASSWD
 cat <<EOF > /etc/sudoers.d/ansible.conf
 ansible   ALL=(ALL) NOPASSWD: ALL
+EOF
+cat <<EOF > /etc/sudoers.d/${guest_username}.conf
+${guest_username}   ALL=(ALL) NOPASSWD: ALL
 EOF
 %end

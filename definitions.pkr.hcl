@@ -184,24 +184,37 @@ variable "boot_command" {
   description = "The boot command to use for the guest OS"
 }
 
+variable "admin_username" {
+  type        = string
+  default     = "root"
+  sensitive   = false
+  description = "Admin username used to login"
+}
+
+variable "admin_password" {
+  type        = string
+  sensitive   = true
+  description = "Admin password used to login"
+}
+
 variable "guest_username" {
   type        = string
   default     = "Administrator"
   sensitive   = false
-  description = "Windows admin username used to login"
+  description = "Guest username used to login"
 }
 
 variable "guest_password" {
   type        = string
   sensitive   = true
-  description = "What is the password of the Administrative user?"
+  description = "Guest password used to login"
 }
 
-variable "guest_password_encrypted" {
-  type        = string
-  sensitive   = true
-  description = "What is the encrypted password of the Administrative user?"
-}
+# variable "guest_password_encrypted" {
+#   type        = string
+#   sensitive   = true
+#   description = "What is the encrypted password of the Administrative user?"
+# }
 
 variable "guest_language" {
   type        = string

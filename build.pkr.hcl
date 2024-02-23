@@ -32,9 +32,10 @@ locals {
     build_date                  = formatdate("YYYY-MM-DD hh:mm ZZZ", timestamp())
     cd_content                  = {
         "ks.cfg" = templatefile("${abspath(path.root)}/files/ks.pkrtpl.hcl", {
-            guest_password = var.guest_password
-            guest_password_encrypted = var.guest_password_encrypted
+            admin_username = var.admin_username
+            admin_password = var.admin_password
             guest_username = var.guest_username
+            guest_password = var.guest_password
             guest_keyboard = var.guest_keyboard
             guest_timezone = var.guest_timezone
             guest_language = var.guest_language
