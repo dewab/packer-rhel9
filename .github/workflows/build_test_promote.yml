@@ -69,16 +69,16 @@ jobs:
             vcenter/vcsa.lab.local username | PKR_VAR_vsphere_user ;
             vcenter/vcsa.lab.local password | PKR_VAR_vsphere_password ;
             vcenter/vcsa.lab.local hostname | PKR_VAR_vsphere_server ;
-            guest_defaults/linux/guest/username | PKR_VAR_guest_username ;
-            guest_defaults/linux/guest/password | PKR_VAR_guest_password ;
-            guest_defaults/linux/admin/username | PKR_VAR_admin_username ;
-            guest_defaults/linux/admin/password | PKR_VAR_admin_password ;
-            redhat/rhn/username | PKR_VAR_guest_redhat_user ;
-            redhat/rhn/password | PKR_VAR_guest_redhat_password ;
-            hashicorp-cloud-platform/packer/project_id | HCP_PROJECT_ID ;
-            hashicorp-cloud-platform/packer/organization_id | HCP_ORGANIZATION_ID ;
-            hashicorp-cloud-platform/packer/client_id | HCP_CLIENT_ID ;
-            hashicorp-cloud-platform/packer/client_secret | HCP_CLIENT_SECRET ;
+            guest_defaults/linux/guest username | PKR_VAR_guest_username ;
+            guest_defaults/linux/guest password | PKR_VAR_guest_password ;
+            guest_defaults/linux/admin username | PKR_VAR_admin_username ;
+            guest_defaults/linux/admin password | PKR_VAR_admin_password ;
+            redhat/rhn username | PKR_VAR_guest_redhat_user ;
+            redhat/rhn password | PKR_VAR_guest_redhat_password ;
+            hashicorp-cloud-platform/packer project_id | HCP_PROJECT_ID ;
+            hashicorp-cloud-platform/packer organization_id | HCP_ORGANIZATION_ID ;
+            hashicorp-cloud-platform/packer client_id | HCP_CLIENT_ID ;
+            hashicorp-cloud-platform/packer client_secret | HCP_CLIENT_SECRET ;
             
       - name: Checkout
         uses: actions/checkout@v3
@@ -128,16 +128,16 @@ jobs:
             vcenter/vcsa.lab.local username | TF_VAR_vsphere_user ;
             vcenter/vcsa.lab.local password | TF_VAR_vsphere_password ;
             vcenter/vcsa.lab.local hostname | TF_VAR_vsphere_server ;
-            guest_defaults/linux/guest/username | TF_VAR_guest_username ;
-            guest_defaults/linux/guest/password | TF_VAR_guest_password ;
-            guest_defaults/linux/admin/username | TF_VAR_admin_username ;
-            guest_defaults/linux/admin/password | TF_VAR_admin_password ;
-            redhat/rhn/username | TF_VAR_guest_redhat_user ;
-            redhat/rhn/password | TF_VAR_guest_redhat_password ;
-            hashicorp-cloud-platform/packer/project_id | HCP_PROJECT_ID ;
-            hashicorp-cloud-platform/packer/organization_id | HCP_ORGANIZATION_ID ;
-            hashicorp-cloud-platform/packer/client_id | HCP_CLIENT_ID ;
-            hashicorp-cloud-platform/packer/client_secret | HCP_CLIENT_SECRET ;
+            guest_defaults/linux/guest username | TF_VAR_guest_username ;
+            guest_defaults/linux/guest password | TF_VAR_guest_password ;
+            guest_defaults/linux/admin username | TF_VAR_admin_username ;
+            guest_defaults/linux/admin password | TF_VAR_admin_password ;
+            redhat/rhn username | TF_VAR_guest_redhat_user ;
+            redhat/rhn password | TF_VAR_guest_redhat_password ;
+            hashicorp-cloud-platform/packer project_id | HCP_PROJECT_ID ;
+            hashicorp-cloud-platform/packer organization_id | HCP_ORGANIZATION_ID ;
+            hashicorp-cloud-platform/packer client_id | HCP_CLIENT_ID ;
+            hashicorp-cloud-platform/packer client_secret | HCP_CLIENT_SECRET ;
 
       - name: Checkout Repository
         uses: actions/checkout@v2
@@ -185,10 +185,10 @@ jobs:
           token: ${{ secrets.VAULT_TOKEN }}
           caCertificate: ${{ secrets.VAULT_CA_CERT }}
           secrets: |
-            hashicorp-cloud-platform/packer/project_id | HCP_PROJECT_ID ;
-            hashicorp-cloud-platform/packer/organization_id | HCP_ORGANIZATION_ID ;
-            hashicorp-cloud-platform/packer/client_id | HCP_CLIENT_ID ;
-            hashicorp-cloud-platform/packer/client_secret | HCP_CLIENT_SECRET ;
+            hashicorp-cloud-platform/packer project_id | HCP_PROJECT_ID ;
+            hashicorp-cloud-platform/packer organization_id | HCP_ORGANIZATION_ID ;
+            hashicorp-cloud-platform/packer client_id | HCP_CLIENT_ID ;
+            hashicorp-cloud-platform/packer client_secret | HCP_CLIENT_SECRET ;
 
       - name: Checkout Repository
         uses: actions/checkout@v2
