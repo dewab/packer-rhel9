@@ -8,35 +8,35 @@
 ###############################################################################
 # VM Hardware 
 ###############################################################################
-vm_name             = "RHEL9-Template"
+vm_name = "RHEL9-Template"
 # https://code.vmware.com/apis/358/vsphere/doc/vim.vm.GuestOsDescriptor.GuestOsIdentifier.html
-vm-os-type          = "rhel9_64Guest"
-vm-cpu-num          = 2
-vm-cpu-hotplug      = true
-vm-mem-size         = 4096
-vm-mem-hotplug      = true
-vm-network-card     = "vmxnet3"
-vm-disk-size        = 40960
-vm-disk-thin        = true
-vm-disk-controller  = ["pvscsi"]
-vm-firmware         = "efi-secure"
+vm-os-type = "rhel9_64Guest"
+vm-cpu-num = 2
+vm-cpu-hotplug = true
+vm-mem-size = 4096
+vm-mem-hotplug = true
+vm-network-card = "vmxnet3"
+vm-disk-size = 40960
+vm-disk-thin = true
+vm-disk-controller = ["pvscsi"]
+vm-firmware = "efi-secure"
 
 ###############################################################################
 # OS Info
 ###############################################################################
-guest_keyboard      = "us"
-guest_timezone      = "America/Chicago"
-guest_language      = "en_US"
+guest_keyboard = "us"
+guest_timezone = "America/Chicago"
+guest_language = "en_US"
 
 ###############################################################################
 # OS Meta Data
 ###############################################################################
-guest_os_family     = "Linux"
-guest_os_vendor     = "RedHat"
-guest_os_version    = "9.3"
+guest_os_family = "Linux"
+guest_os_vendor = "RedHat"
+guest_os_version = "9.3"
 guest_os_architecture = "x86_64"
-guest_os_type       = "Server"
-guest_os_edition    = "Minimal"
+guest_os_type = "Server"
+guest_os_edition = "Minimal"
 
 ###############################################################################
 # Installation Media
@@ -59,7 +59,7 @@ boot_command = [
 ###############################################################################
 floppy_files = []
 cd_label = "kickstart"
-cd_files = [] 
+cd_files = []
 script_files_group_1 = []
 script_files_group_2 = []
 inline_commands = []
