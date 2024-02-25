@@ -76,29 +76,29 @@ variable "vsphere_insecure_connection" {
 
 # vSphere Content Library and Template Configuration
 variable "vsphere_convert_template" {
-  type = bool
-  description = "Convert the VM to a template?"
-  default = false
+    type = bool
+    description = "Convert the VM to a template?"
+    default = false
 }
 variable "vsphere_content_library" {
-  type = string
-  description = "Name of the vSphere Content Library to export the VM to"
-  default = null
+    type = string
+    description = "Name of the vSphere Content Library to export the VM to"
+    default = null
 }
 variable "vsphere_content_library_ovf" {
-  type = bool
-  description = "Export to Content Library as an OVF file?"
-  default = true
+    type = bool
+    description = "Export to Content Library as an OVF file?"
+    default = true
 }
 variable "vsphere_content_library_destroy" {
-  type = bool
-  description = "Delete the VM after successfully exporting to a Content Library?"
-  default = true
+    type = bool
+    description = "Delete the VM after successfully exporting to a Content Library?"
+    default = true
 }
 variable "vsphere_content_library_skip" {
-  type = bool
-  description = "Skip adding the VM to a Content Library?"
-  default = false
+    type = bool
+    description = "Skip adding the VM to a Content Library?"
+    default = false
 }
 
 variable "vm-os-type" {
@@ -231,7 +231,7 @@ variable "guest_keyboard" {
 
 variable "vm-version" {
   type = string
-  default = 19
+  default = 19          
   # 7.0u2
   description = "What is the VMware hardware version for this VM?"
 }
@@ -281,73 +281,72 @@ variable "inline_cmds" {
   description = "A list of commands that will be run on the VM"
 }
 
-variable "inline_commands" {
+variable "phase2_inline" {
   type = list(string)
   default = []
-  description = "A list of commands that will be run on the VM during build"
+  description = "A list of commands that will be run on the VM during phase 2"
 }
 
 # Timeout Settings
 variable "vm_ssh_timeout" {
-  type = string
-  description = "Set the timeout for the VM to obtain an SSH connection (e.g. '1h5m2s' or '2s')"
-  default = "30m"
+    type = string
+    description = "Set the timeout for the VM to obtain an SSH connection (e.g. '1h5m2s' or '2s')"
+    default = "30m"
 }
 variable "vm_ssh_agent_auth" {
-  type = bool
-  description = "Enable SSH Agent Authentication?"
-  default = false
+    type = bool
+    description = "Enable SSH Agent Authentication?"
+    default = false
 }
 variable "vm_ssh_handshake_attempts" {
-  type = number
-  description = "Set the number of SSH handshake attempts"
-  default = 10
+    type = number
+    description = "Set the number of SSH handshake attempts"
+    default = 10
 }
 variable "vm_ip_timeout" {
-  type = string
-  description = "Set the timeout for the VM to obtain an IP address (e.g. '1h5m2s' or '2s')"
-  default = "3h"
+    type = string
+    description = "Set the timeout for the VM to obtain an IP address (e.g. '1h5m2s' or '2s')"
+    default = "3h"
 }
 variable "vm_shutdown_timeout" {
-  type = string
-  description = "Set the timeout for the VM to shutdown after the shutdown command is issued (e.g. '1h5m2s' or '2s')"
-  default = "3h"
+    type = string
+    description = "Set the timeout for the VM to shutdown after the shutdown command is issued (e.g. '1h5m2s' or '2s')"
+    default = "3h"
 }
 variable "ovf_export_path" {
     type = string
     description = "Set the path to export the OVF file to (e.g. './exports')"
-    default = "./exports"
 }
 # Guest Meta Data
 variable "guest_os_family" {
-  type = string
-  description = "The Guest OS Family (e.g. 'windows' or 'linux')"
-  default = "windows"
+    type = string
+    description = "The Guest OS Family (e.g. 'windows' or 'linux')"
+    default = "windows"
 }
 variable "guest_os_vendor" {
-  type = string
-  description = "The Guest OS Vendor (e.g. 'Microsoft' or 'RedHat')"
-  default = "Microsoft"
+    type = string
+    description = "The Guest OS Vendor (e.g. 'Microsoft' or 'RedHat')"
+    default = "Microsoft"
 }
 variable "guest_os_version" {
-  type = string
-  description = "The Guest OS Version (e.g. '2019' or '7.9')"
-  default = "2019"
+    type = string
+    description = "The Guest OS Version (e.g. '2019' or '7.9')"
+    default = "2019"
 }
 variable "guest_os_type" {
-  type = string
-  description = "The Guest OS Type (e.g. 'Server' or 'Desktop')"
-  default = "Server"
+    type = string
+    description = "The Guest OS Type (e.g. 'Server' or 'Desktop')"
+    default = "Server"
 }
 variable "guest_os_edition" {
-  type = string
-  description = "The Guest OS Edition (e.g. 'Standard' or 'Datacenter')"
-  default = "Datacenter"
+    type = string
+    description = "The Guest OS Edition (e.g. 'Standard' or 'Datacenter')"
+    default = "Datacenter"
 }
 variable "guest_os_architecture" {
-  type = string
-  description = "The Guest OS Architecture (e.g. 'x86_64' or 'x86')"
-  default = "x86_64"
+    type = string
+    description = "The Guest OS Architecture (e.g. 'x86_64' or 'x86')"
+    default = "x86_64"
 }
 
 # Git Hub Credentials

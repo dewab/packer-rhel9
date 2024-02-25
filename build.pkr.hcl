@@ -1,13 +1,8 @@
 ###############################################################################
-# Name:             windows.pkr.hcl
-# Description:      Packer Build Definition for Windows 10 Professional
+# Name:             build.pkr.hcl
+# Description:      Packer Build Definition for Linux
 # Author:           Daniel Whicker
-# Date:             2021-05-29
 ###############################################################################
-
-# The plan with this build is to split installation, patching, and 
-# customization across separate iterations of packer.  We can then re-use the
-# initial base install over multiple iterations of patching and customizing
 
 ###############################################################################
 #  Dependencies
