@@ -275,7 +275,7 @@ variable "script_files_group_2" {
   description = "A list of scripts that will be run on the VM"
 }
 
-variable "inline_cmds" {
+variable "inline_commands" {
   type = list(string)
   default = []
   description = "A list of commands that will be run on the VM"
@@ -316,6 +316,7 @@ variable "vm_shutdown_timeout" {
 variable "ovf_export_path" {
     type = string
     description = "Set the path to export the OVF file to (e.g. './exports')"
+    default = null
 }
 # Guest Meta Data
 variable "guest_os_family" {
@@ -372,4 +373,11 @@ variable "guest_redhat_password" {
   description = "The Red Hat Network Password"
   sensitive = true
   default = ""
+}
+
+# Windows Installer Variables
+variable "windows_image_index" {
+  type = number
+  description = "The Windows Image Index"
+  default = 1
 }

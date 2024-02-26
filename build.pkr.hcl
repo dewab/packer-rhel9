@@ -87,7 +87,7 @@ vm_name = var.vm_name
   vm_version = var.vm-version
   cd_content = local.cd_content
   cd_label = var.cd_label
-  cd_files = [ "files/test.txt" ]
+  cd_files = var.cd_files
 
   # Installation Media
   iso_checksum = var.iso_checksum
