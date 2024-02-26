@@ -70,22 +70,18 @@ jobs:
 
       - name: Run `packer init`
         id: init
-        # working-directory: ./rhel9
         run: "packer init ."
         
       - name: Run `packer validate`
         id: validate
-        # working-directory: ./rhel9
         run: "packer validate ."
         
       - name: Run `packer build`
         id: build
-        # working-directory: ./rhel9
         run: "packer build -color=false -on-error=abort -force ."
         
       - name: Get HCP Packer Iteration ID from Packer Manifest
         id: hcp
-        # working-directory: ./rhel9
         run: |
           last_run_uuid=$(jq -r '.last_run_uuid' "./packer_manifest.json")
           build=$(jq -r '.builds[] | select(.packer_run_uuid == "'"$last_run_uuid"'")' "./packer_manifest.json")
