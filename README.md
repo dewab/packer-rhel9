@@ -14,7 +14,7 @@ This repository contains a Packer template for building Red Hat 9.x vSphere Temp
 ## Building
 
 Recommended to use a local .envrc for setting environment variables for local testing.
-Use Actions and Sercets for CI/CD builds.
+Use HashiCorp Vault and Action Variables for CI/CD builds.
 
 ### Local Testing
 
@@ -25,7 +25,7 @@ packer validate .
 packer build -force .
 ```
 
-### Variables (local)
+### Variables (local, for testing)
 
 ```shell
 export PKR_VAR_vsphere_server="<vcenter FQDN/hostname>"
@@ -38,7 +38,6 @@ export PKR_VAR_vsphere_network="<vsphere network PogrGroup>"
 export PKR_VAR_vsphere_folder="<vSphere templates folder>"
 export PKR_VAR_guest_username="<local username / admin username>"
 export PKR_VAR_guest_password="<password>"
-export PKR_VAR_guest_password_encrypted='<sha512 cryped version of above password>'
 export PKR_VAR_guest_redhat_user="<RedHat RHN User Name>"
 export PKR_VAR_guest_redhat_password="<RedHat RHN Password/Token>"
 export HCP_CLIENT_ID="<client id>"
@@ -49,42 +48,24 @@ export HCP_ORGANIZATION_ID="<org id>"
 
 ### Variables (CI/CD)
 
+Variables will (mostly) be retrieved from HashiCorp Vault and injected into the environment at runtime.  Variables below are required from elsewhere.
+
+```shell
+
 #### Environment Variables
 
 ```text
-VSPHERE_SERVER
-VSPHERE_USER
+VAULT_ADDR
+VAULT_TOKEN
+VAULT_CACERT
 VSPHERE_CLUSTER
 VSPHERE_DATACENTER
 VSPHERE_DATASTORE
 VSPHERE_NETWORK
 VSPHERE_FOLDER
-GUEST_USERNAME
-VSPHERE_SERVER
-VSPHERE_USER
-VSPHERE_CLUSTER
-VSPHERE_DATACENTER
-VSPHERE_DATASTORE
-VSPHERE_NETWORK
-VSPHERE_FOLDER
-REDHAT_USER
-GUEST_USERNAME
-HCP_PROJECT_ID
-HCP_ORGANIZATION_ID
-HCP_CLIENT_ID
-HCP_BUCKET
 ```
 
 #### Secrets
 
-```text
-VSPHERE_PASSWORD
-GUEST_PASSWORD
-GUEST_PASSWORD_ENCRYPTED
-VSPHERE_PASSWORD
-REDHAT_PASSWORD
-ADMIN_USERNAME
-ADMIN_PASSWORD
-GUEST_PASSWORD
-HCP_CLIENT_SECRET
-```
+Secrets are stored in HashiCorp Vault and are injected into the environment at runtime.
+
