@@ -50,7 +50,7 @@ variable "guest_redhat_user" {
 
 variable "guest_redhat_password" {
   description = "Red Hat Cloud password"
-  type = string
+  type        = string
   # sensitive = true
 }
 
@@ -62,6 +62,6 @@ variable "guest_username" {
 
 variable "guest_password" {
   description = "Guest OS password"
-  type = string
+  type        = string
   # sensitive = true
 }
