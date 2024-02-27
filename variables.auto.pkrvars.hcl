@@ -1,12 +1,12 @@
 ###############################################################################
-# Name:             variables.pkrvars.hcl  
+# Name:             variables.pkrvars.hcl
 # Description:      Variables
 # Author:           Daniel Whicker
 # Date:             2022-11-29
 ###############################################################################
 
 ###############################################################################
-# VM Hardware 
+# VM Hardware
 ###############################################################################
 vm_name = "RHEL9-Template"
 # https://code.vmware.com/apis/358/vsphere/doc/vim.vm.GuestOsDescriptor.GuestOsIdentifier.html

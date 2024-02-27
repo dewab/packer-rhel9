@@ -1,0 +1,30 @@
+repos:
+  - repo: https://github.com/cisagov/pre-commit-packer
+    rev: v0.0.2
+    hooks:
+      # Does not read the auto.pkrvars.hcl file, so errors on all variables
+      # - id: packer_validate
+      #   args:
+      #     - manual_file_entry
+      - id: packer_fmt
+  - repo: https://github.com/exdial/pre-commit-hooks
+    rev: v0.0.7
+    hooks:
+      # Does not read the auto.pkrvars.hcl file, so errors on all variables
+      # - id: packer-validate
+      # - id: packer-fmt
+      - id: terraform-validate
+      - id: terraform-fmt
+      - id: terragrunt-hclfmt
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+    - id: trailing-whitespace
+    - id: end-of-file-fixer
+    - id: check-yaml
+    # - id: check-shebang-scripts-are-executable
+  - repo: https://github.com/ansible-community/ansible-lint.git
+    rev: v24.2.0  # put latest release tag from https://github.com/ansible-community/ansible-lint/releases/
+    hooks:
+      - id: ansible-lint
+        files: \.(yaml|yml)$

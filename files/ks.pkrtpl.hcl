@@ -41,7 +41,7 @@ network  --bootproto=dhcp --device=eth0
 reboot
 
 # System timezone
-timezone ${guest_timezone} 
+timezone ${guest_timezone}
 timesource --ntp-pool pool.ntp.org
 
 # System bootloader configuration

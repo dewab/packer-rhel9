@@ -68,4 +68,3 @@ VSPHERE_FOLDER
 #### Secrets
 
 Secrets are stored in HashiCorp Vault and are injected into the environment at runtime.
-
