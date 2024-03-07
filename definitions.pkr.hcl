@@ -101,7 +101,7 @@ variable "vsphere_content_library_skip" {
   default     = false
 }
 
-variable "vm-os-type" {
+variable "vm_os_type" {
   type        = string
   description = "The operating system type"
 }
@@ -112,70 +112,76 @@ variable "vm_name" {
   description = "The name of the Template to build"
 }
 
-variable "vm-firmware" {
+variable "vm_firmware" {
   type        = string
   default     = "bios"
   description = "Firmware type BIOS/UEFI"
 }
 
-variable "vm-cpu-num" {
+variable "vm_cpu_num" {
   type        = number
   default     = 2
   description = "The the number of vCPUs for the Template"
 }
 
-variable "vm-cpu-hotplug" {
+variable "vm_cpu_hotplug" {
   type        = bool
   default     = true
   description = "Is CPU HotPlug to be enabled? (true/false)"
 }
 
-variable "vm-mem-size" {
+variable "vm_mem_size" {
   type        = number
   default     = 4096
   description = "How much memory (GB) to assign to the Template?"
 }
 
-variable "vm-mem-hotplug" {
+variable "vm_mem_hotplug" {
   type        = bool
   default     = true
   description = "Is Memory HotPlug to be enabled? (true/false)"
 }
 
-variable "vm-network-card" {
+variable "vm_network_card" {
   type        = string
   default     = "e1000e"
   description = "Model of network card (e1000/e1000e/vmxnet3)"
 }
 
-variable "vm-disk-controller" {
+variable "vm_disk_controller" {
   type        = list(string)
   default     = ["scsi"]
   description = "Model of Disk controller to use for OS disk"
 }
 
-variable "vm-disk-size" {
+variable "vm_disk_size" {
   type        = number
   default     = 40960
   description = "How large should the OS disk be sized (GB)?"
 }
 
-variable "vm-disk-thin" {
+variable "vm_disk_thin" {
   type        = bool
   default     = true
   description = "Should the OS disk be thin-provisioned? (true/false)"
 }
 
-variable "vm-nested-hv" {
+variable "vm_nested_hv" {
   type        = bool
   default     = false
   description = "Should nested virtualization (VT-X) be enabled? (true/false)"
 }
 
-variable "vm-video-ram" {
+variable "vm_video_ram" {
   type        = number
   default     = 16384
   description = "Amount of memory to use for video?"
+}
+
+variable "boot_wait" {
+  type        = string
+  default     = "3s"
+  description = "How long to wait for the VM to boot?"
 }
 
 variable "boot_command" {
@@ -229,7 +235,7 @@ variable "guest_keyboard" {
   description = "What is the keyboard layout of the Guest OS?"
 }
 
-variable "vm-version" {
+variable "vm_version" {
   type    = string
   default = 19
   # 7.0u2
@@ -281,13 +287,11 @@ variable "inline_commands" {
   description = "A list of commands that will be run on the VM"
 }
 
-variable "phase2_inline" {
-  type        = list(string)
-  default     = []
-  description = "A list of commands that will be run on the VM during phase 2"
+variable "remote_communicator" {
+  type        = string
+  default     = "ssh"
+  description = "The remote communicator to use for the VM"
 }
-
-# Timeout Settings
 variable "vm_ssh_timeout" {
   type        = string
   description = "Set the timeout for the VM to obtain an SSH connection (e.g. '1h5m2s' or '2s')"
@@ -380,4 +384,89 @@ variable "windows_image_index" {
   type        = number
   description = "The Windows Image Index"
   default     = 1
+}
+# Azure Variables
+variable "arm_client_id" {
+  type        = string
+  description = "The Azure Client ID"
+  default     = env("ARM_CLIENT_ID")
+  sensitive   = true
+}
+variable "arm_client_secret" {
+  type        = string
+  description = "The Azure Client Secret"
+  default     = env("ARM_CLIENT_SECRET")
+  sensitive   = true
+}
+variable "arm_tenant_id" {
+  type        = string
+  description = "The Azure Tenant ID"
+  default     = env("ARM_TENANT_ID")
+  sensitive   = true
+}
+variable "arm_subscription_id" {
+  type        = string
+  description = "The Azure Subscription ID"
+  default     = env("ARM_SUBSCRIPTION_ID")
+  sensitive   = true
+}
+variable "arm_resource_group" {
+  type        = string
+  description = "The Azure Resource Group"
+  default     = env("ARM_RESOURCE_GROUP")
+  sensitive   = false
+}
+variable "arm_image_publisher" {
+  type        = string
+  description = "The Azure Image Publisher"
+  default     = env("ARM_IMAGE_PUBLISHER")
+  sensitive   = false
+}
+variable "arm_image_offer" {
+  type        = string
+  description = "The Azure Image Offer"
+  default     = env("ARM_IMAGE_OFFER")
+  sensitive   = false
+}
+variable "arm_image_sku" {
+  type        = string
+  description = "The Azure Image SKU"
+  default     = env("ARM_IMAGE_SKU")
+  sensitive   = false
+}
+variable "arm_managed_image_name" {
+  type        = string
+  description = "The Azure Managed Image Name"
+  default     = "PackerImage"
+  sensitive   = false
+}
+variable "arm_image_version" {
+  type        = string
+  description = "The Azure Image Version"
+  default     = "latest"
+  sensitive   = false
+}
+variable "arm_vm_size" {
+  type        = string
+  description = "The Azure VM Size"
+  default     = "Standard_DS2_v2"
+  sensitive   = false
+}
+variable "arm_location" {
+  type        = string
+  description = "The Azure Location"
+  default     = env("ARM_LOCATION")
+  sensitive   = false
+}
+variable "hcp_bucket_name" {
+  type        = string
+  description = "The HCP Bucket Name"
+  default     = ""
+  sensitive   = false
+}
+variable "user_data" {
+  type        = string
+  description = "The cloud-init user data"
+  default     = ""
+  sensitive   = false
 }

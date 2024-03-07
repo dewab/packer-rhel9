@@ -71,7 +71,7 @@ logvol /var --fstype="xfs" --size=4096 --thin --poolname=pool00 --name=var --vgn
 logvol /var/log --fstype="xfs" --size=2048 --thin --poolname=pool00 --name=var_log --vgname=rhel --fsoptions="nodev"
 logvol /var/log/audit --fstype="xfs" --size=512 --thin --poolname=pool00 --name=var_log_audit  --vgname=rhel --fsoptions="nodev"
 logvol /var/tmp --fstype="xfs" --size=4096 --thin --poolname=pool00 --name=var_tmp --vgname=rhel --fsoptions="nodev,noexec,nosuid"
-logvol /tmp --fstype="xfs" --size=4096 --thin --poolname=pool00 --name=tmp --vgname=rhel --fsoptions="nodev,noexec,nosuid"
+logvol /tmp --fstype="xfs" --size=4096 --thin --poolname=pool00 --name=tmp --vgname=rhel --fsoptions="nodev,nosuid"
 logvol /home --fstype="xfs" --size=2048 --thin --poolname=pool00 --name=home --vgname=rhel --fsoptions="nodev"
 ## End Disk partitioning information ##
 

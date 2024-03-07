@@ -8,18 +8,30 @@
 ###############################################################################
 # VM Hardware
 ###############################################################################
-vm_name = "RHEL9-Template"
 # https://code.vmware.com/apis/358/vsphere/doc/vim.vm.GuestOsDescriptor.GuestOsIdentifier.html
-vm-os-type         = "rhel9_64Guest"
-vm-cpu-num         = 2
-vm-cpu-hotplug     = true
-vm-mem-size        = 4096
-vm-mem-hotplug     = true
-vm-network-card    = "vmxnet3"
-vm-disk-size       = 40960
-vm-disk-thin       = true
-vm-disk-controller = ["pvscsi"]
-vm-firmware        = "efi-secure"
+vm_name            = "RHEL9-Template"
+vm_os_type         = "rhel9_64Guest"
+vm_cpu_num         = 2
+vm_cpu_hotplug     = true
+vm_mem_size        = 4096
+vm_mem_hotplug     = true
+vm_network_card    = "vmxnet3"
+vm_disk_size       = 40960
+vm_disk_thin       = true
+vm_disk_controller = ["pvscsi"]
+vm_firmware        = "efi-secure"
+
+###############################################################################
+# Azure Configuration
+###############################################################################
+arm_image_publisher = "RHEL"
+arm_image_offer     = "RedHat"
+arm_image_sku       = "9_3"
+arm_image_version   = "latest"
+arm_resource_group  = "rg-1"
+arm_vm_size         = "Standard_DS2_v2"
+arm_location        = "eastus"
+# arm_managed_image_name  = var.vm_name
 
 ###############################################################################
 # OS Info
@@ -37,19 +49,18 @@ guest_os_version      = "9.3"
 guest_os_architecture = "x86_64"
 guest_os_type         = "Server"
 guest_os_edition      = "Minimal"
+hcp_bucket_name       = "redhat"
 
 ###############################################################################
 # Installation Media
 ###############################################################################
 
 # iso_checksum = "none"
-# iso_checksum = "sha256:a387f3230acf87ee38707ee90d3c88f44d7bf579e6325492f562f0f1f9449e89"
-# iso_url = "https://web.rhel.ccplano.lab/rhel-baseos-9.0-x86_64-dvd.iso"
-
 iso_checksum = "sha256:5c802147aa58429b21e223ee60e347e850d6b0d8680930c4ffb27340ffb687a8"
 iso_url      = "https://filebrowser.home.bifrost.cc/api/public/dl/lEn5J2-a/cdimages/Linux/RedHat/rhel-9.3-x86_64-dvd.iso"
 
 http_directory = "files/"
+boot_wait      = "3s"
 boot_command = [
   "<up>e<down><down><end> inst.text inst.ks=cdrom <leftCtrlOn>x<leftCtrlOff>"
 ]
@@ -57,9 +68,14 @@ boot_command = [
 ###############################################################################
 # Provisioner Settings
 ###############################################################################
-floppy_files         = []
-cd_label             = "kickstart"
-cd_files             = []
-script_files_group_1 = []
-script_files_group_2 = []
-inline_commands      = []
+remote_communicator = "ssh" # "none", "ssh", "winrm"
+floppy_files        = []
+cd_label            = "kickstart"
+cd_files            = []
+script_files_group_1 = [
+  "files/00_subscription_manager.sh",
+  "files/01_update_all.sh",
+  "files/02_customization.sh",
+  "files/99_cleanup.sh"
+]
+inline_commands = []
