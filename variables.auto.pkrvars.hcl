@@ -24,8 +24,8 @@ vm_firmware        = "efi-secure"
 ###############################################################################
 # Azure Configuration
 ###############################################################################
-arm_image_publisher = "RHEL"
-arm_image_offer     = "RedHat"
+arm_image_publisher = "RedHat"
+arm_image_offer     = "RHEL"
 arm_image_sku       = "9_3"
 arm_image_version   = "latest"
 arm_resource_group  = "rg-1"

@@ -177,7 +177,7 @@ build {
   ]
 
   provisioner "shell" {
-    execute_command = "chmod +x {{ .Path }}; {{ .Vars }} sudo -E sh '{{ .Path }}'"
+    execute_command = "chmod +x {{ .Path }}; echo ${var.guest_password} | {{ .Vars }} sudo -SE sh '{{ .Path }}'"
     inline_shebang  = "/bin/sh -x"
     env = {
       REDHAT_USERNAME : var.guest_redhat_user

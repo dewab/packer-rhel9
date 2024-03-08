@@ -1,10 +1,10 @@
 #cloud-config
 
-package_update: true
-package_upgrade: true
-packages:
-  - zsh
-  - nginx
+#package_update: true
+#package_upgrade: true
+#packages:
+#  - zsh
+#  - nginx
 
 timezone: ${guest_timezone}
 
