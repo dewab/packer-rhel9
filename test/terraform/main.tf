@@ -99,7 +99,7 @@ resource "vsphere_virtual_machine" "vm_clone" {
   provisioner "remote-exec" {
     inline = [
       "sleep 60",
-      "echo '${var.guest_password}' | sudo -S subscription-manager register --username=${var.redhat_user} --password=${var.redhat_password}",
+      "echo '${var.guest_password}' | sudo -S subscription-manager register --username=${var.redhat_username} --password=${var.redhat_password}",
       "echo '${var.guest_password}' | sudo -S yum install -y nginx",
       "echo '${var.guest_password}' | sudo -S systemctl start nginx",
       "echo '${var.guest_password}' | sudo -S firewall-cmd --add-service=http",

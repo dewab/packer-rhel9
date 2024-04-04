@@ -28,7 +28,6 @@ arm_image_publisher = "RedHat"
 arm_image_offer     = "RHEL"
 arm_image_sku       = "9_3"
 arm_image_version   = "latest"
-arm_resource_group  = "rg-1"
 arm_vm_size         = "Standard_DS2_v2"
 arm_location        = "eastus"
 # arm_managed_image_name  = var.vm_name

@@ -180,8 +180,8 @@ build {
     execute_command = "chmod +x {{ .Path }}; echo ${var.guest_password} | {{ .Vars }} sudo -SE sh '{{ .Path }}'"
     inline_shebang  = "/bin/sh -x"
     env = {
-      REDHAT_USERNAME : var.guest_redhat_user
-      REDHAT_PASSWORD : var.guest_redhat_password
+      REDHAT_USERNAME : var.redhat_username
+      REDHAT_PASSWORD : var.redhat_password
     }
     scripts = var.script_files_group_1
   }

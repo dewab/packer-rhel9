@@ -378,16 +378,21 @@ variable "github_username" {
   default     = ""
 }
 # Used for RHN registration
-variable "guest_redhat_user" {
+variable "redhat_username" {
   type        = string
   description = "The Red Hat Network Username"
-  default     = ""
+  default     = env("REDHAT_USERNAME")
 }
-variable "guest_redhat_password" {
+variable "redhat_password" {
   type        = string
   description = "The Red Hat Network Password"
   sensitive   = true
-  default     = ""
+  default     = env("REDHAT_PASSWORD")
+}
+variable "redhat_registration_command" {
+  type        = string
+  description = "The Red Hat Registration Command"
+  default     = env("REDHAT_REGISTRATION_COMMAND")
 }
 
 # Windows Installer Variables

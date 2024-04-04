@@ -39,7 +39,7 @@ variable "vsphere_folder" {
   type        = string
 }
 
-variable "redhat_user" {
+variable "redhat_username" {
   description = "Red Hat Cloud username"
   type        = string
 }
