@@ -182,6 +182,7 @@ build {
     env = {
       REDHAT_USERNAME : var.redhat_username
       REDHAT_PASSWORD : var.redhat_password
+      REDHAT_REGISTRATION_COMMAND : var.redhat_registration_command
     }
     scripts = var.script_files_group_1
   }
