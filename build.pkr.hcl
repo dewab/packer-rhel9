@@ -147,7 +147,7 @@ source "vsphere-iso" "template" {
 
   # vCenter Configuration
   vcenter_server      = var.vsphere_server
-  username            = var.vsphere_usernamename
+  username            = var.vsphere_username
   password            = var.vsphere_password
   insecure_connection = var.vsphere_insecure_connection
 
