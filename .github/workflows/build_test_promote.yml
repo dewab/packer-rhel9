@@ -18,17 +18,20 @@ on:
 
 env:
   PRODUCT_VERSION: "latest"
-  # PKR_VAR_vsphere_cluster: ${{ vars.VSPHERE_CLUSTER }}
-  # PKR_VAR_vsphere_datacenter: ${{ vars.VSPHERE_DATACENTER }}
-  # PKR_VAR_vsphere_datastore: ${{ vars.VSPHERE_DATASTORE }}
-  # PKR_VAR_vsphere_network: ${{ vars.VSPHERE_NETWORK }}
-  # PKR_VAR_vsphere_folder: ${{ vars.VSPHERE_FOLDER }}
+  VSPHERE_CLUSTER: ${{ vars.VSPHERE_CLUSTER }}
+  VSPHERE_DATACENTER: ${{ vars.VSPHERE_DATACENTER }}
+  VSPHERE_DATASTORE: ${{ vars.VSPHERE_DATASTORE }}
+  VSPHERE_NETWORK: ${{ vars.VSPHERE_NETWORK }}
+  VSPHERE_FOLDER: ${{ vars.VSPHERE_FOLDER }}
+  ARM_RESOURCE_GROUP: ${{ vars.ARM_RESOURCE_GROUP }}
+  HCP_BUCKET: ${{ vars.HCP_BUCKET }}
+
+  # Required because terraform is stupid
   TF_VAR_vsphere_cluster: ${{ vars.VSPHERE_CLUSTER }}
   TF_VAR_vsphere_datacenter: ${{ vars.VSPHERE_DATACENTER }}
   TF_VAR_vsphere_datastore: ${{ vars.VSPHERE_DATASTORE }}
   TF_VAR_vsphere_network: ${{ vars.VSPHERE_NETWORK }}
   TF_VAR_vsphere_folder: ${{ vars.VSPHERE_FOLDER }}
-  HCP_BUCKET: ${{ vars.HCP_BUCKET }}
 
 jobs:
   build:
