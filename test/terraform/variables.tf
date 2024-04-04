@@ -1,12 +1,9 @@
-# Copyright (c) HashiCorp, Inc.
-# SPDX-License-Identifier: MPL-2.0
-
 variable "vsphere_server" {
   description = "vSphere server"
   type        = string
 }
 
-variable "vsphere_user" {
+variable "vsphere_usernamename" {
   description = "vSphere username"
   type        = string
 }
@@ -42,26 +39,29 @@ variable "vsphere_folder" {
   type        = string
 }
 
-variable "guest_redhat_user" {
+variable "redhat_user" {
   description = "Red Hat Cloud username"
   type        = string
-  # sensitive = true
 }
 
-variable "guest_redhat_password" {
+variable "redhat_password" {
   description = "Red Hat Cloud password"
   type        = string
-  # sensitive = true
+  sensitive   = true
 }
 
 variable "guest_username" {
   description = "Guest OS username"
   type        = string
-  # sensitive = true
 }
 
 variable "guest_password" {
   description = "Guest OS password"
   type        = string
-  # sensitive = true
+  sensitive   = true
+}
+
+variable "redhat_registration_command" {
+  description = "Red Hat registration command"
+  type        = string
 }

@@ -97,7 +97,7 @@ source "vsphere-iso" "template" {
     for_each = var.vsphere_content_library != null ? [1] : []
     content {
       library     = var.vsphere_content_library
-      name        = var.vm_name
+      name        = var.vsphere_content_library_name
       description = local.vm_description
       ovf         = var.vsphere_content_library_ovf
       destroy     = var.vsphere_content_library_destroy
@@ -147,7 +147,7 @@ source "vsphere-iso" "template" {
 
   # vCenter Configuration
   vcenter_server      = var.vsphere_server
-  username            = var.vsphere_user
+  username            = var.vsphere_usernamename
   password            = var.vsphere_password
   insecure_connection = var.vsphere_insecure_connection
 

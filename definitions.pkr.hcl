@@ -17,54 +17,54 @@ variable "http_directory" {
 
 variable "vsphere_server" {
   type      = string
-  default   = ""
   sensitive = false
+  default   = env("VSPHERE_SERVER")
 }
 
-variable "vsphere_user" {
+variable "vsphere_username" {
   type      = string
-  default   = "administrator@vsphere.local"
   sensitive = false
+  default   = env("VSPHERE_USERNAME")
 }
 
 variable "vsphere_password" {
   type      = string
-  default   = ""
   sensitive = true
+  default   = env("VSPHERE_PASSWORD")
 }
 
 variable "vsphere_datacenter" {
   type      = string
-  default   = ""
   sensitive = false
+  default   = env("VSPHERE_DATACENTER")
 }
 
 variable "vsphere_cluster" {
   type        = string
-  default     = ""
   description = "The VMware Cluster name to build the Template"
   sensitive   = false
+  default     = env("VSPHERE_CLUSTER")
 }
 
 variable "vsphere_network" {
   type        = string
-  default     = ""
   description = "The VMware PortGroup name to build the Template"
   sensitive   = false
+  default     = env("VSPHERE_NETWORK")
 }
 
 variable "vsphere_datastore" {
   type        = string
-  default     = ""
   description = "The VMware Datastore name to place the Template"
   sensitive   = false
+  default     = env("VSPHERE_DATASTORE")
 }
 
 variable "vsphere_folder" {
   type        = string
-  default     = ""
   description = "The VMware Folder Name name to place the Template"
   sensitive   = false
+  default     = env("VSPHERE_FOLDER")
 }
 
 variable "vsphere_insecure_connection" {
@@ -84,16 +84,25 @@ variable "vsphere_content_library" {
   type        = string
   description = "Name of the vSphere Content Library to export the VM to"
   default     = null
+  # default     = env("VSPHERE_CONTENT_LIBRARY")
 }
 variable "vsphere_content_library_ovf" {
   type        = bool
   description = "Export to Content Library as an OVF file?"
-  default     = true
+  default     = false
+  # default     = env("VSPHERE_CONTENT_LIBRARY_OVF")
 }
 variable "vsphere_content_library_destroy" {
   type        = bool
   description = "Delete the VM after successfully exporting to a Content Library?"
-  default     = true
+  default     = false
+  # default     = env("VSPHERE_CONTENT_LIBRARY_DESTROY")
+}
+variable "vsphere_content_library_name" {
+  type        = string
+  description = "Name of the VM in the Content Library"
+  default     = null
+  # default     = env("VSPHERE_CONTENT_LIBRARY_NAME")
 }
 variable "vsphere_content_library_skip" {
   type        = bool
@@ -192,28 +201,30 @@ variable "boot_command" {
 
 variable "admin_username" {
   type        = string
-  default     = "root"
   sensitive   = false
   description = "Admin username used to login"
+  default     = env("ADMIN_USERNAME")
 }
 
 variable "admin_password" {
   type        = string
   sensitive   = true
   description = "What is the password of the Administrative user?"
+  default     = env("ADMIN_PASSWORD")
 }
 
 variable "guest_username" {
   type        = string
-  default     = "Administrator"
   sensitive   = false
   description = "Guest username used to login"
+  default     = env("GUEST_USERNAME")
 }
 
 variable "guest_password" {
   type        = string
   sensitive   = true
   description = "What is the password of the guest user?"
+  default     = env("GUEST_PASSWORD")
 }
 
 variable "guest_language" {

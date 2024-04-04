@@ -9,12 +9,12 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-  schedule:
-    # Uses UTC instead of local time zone
-    # Uess Unix cron syntax
-    # * is a special character in YAML so you have to quote this string
-    # This cron will run every day at 4pm UTC
-    - cron: '0 7 * * *'
+  # schedule:
+  #   # Uses UTC instead of local time zone
+  #   # Uess Unix cron syntax
+  #   # * is a special character in YAML so you have to quote this string
+  #   # This cron will run every day at 4pm UTC
+  #   - cron: '0 7 * * *'
 
 env:
   PRODUCT_VERSION: "latest"
@@ -45,15 +45,15 @@ jobs:
           token: ${{ secrets.VAULT_TOKEN }}
           caCertificate: ${{ secrets.VAULT_CACERT }}
           secrets: |
-            vcenter/vcsa.lab.local username | PKR_VAR_vsphere_user ;
-            vcenter/vcsa.lab.local password | PKR_VAR_vsphere_password ;
-            vcenter/vcsa.lab.local hostname | PKR_VAR_vsphere_server ;
-            guest_defaults/linux/guest username | PKR_VAR_guest_username ;
-            guest_defaults/linux/guest password | PKR_VAR_guest_password ;
-            guest_defaults/linux/admin username | PKR_VAR_admin_username ;
-            guest_defaults/linux/admin password | PKR_VAR_admin_password ;
-            redhat/rhn username | PKR_VAR_guest_redhat_user ;
-            redhat/rhn password | PKR_VAR_guest_redhat_password ;
+            vcenter/vcsa.lab.local username | VSPHERE_USERNAME ;
+            vcenter/vcsa.lab.local password | VSPHERE_PASSWORD ;
+            vcenter/vcsa.lab.local hostname | VSPHERE_SERVER ;
+            guest_defaults/linux/guest username | GUEST_USERNAME ;
+            guest_defaults/linux/guest password | GUSET_PASSWORD ;
+            guest_defaults/linux/admin username | ADMIN_USERNAME ;
+            guest_defaults/linux/admin password | ADMIN_PASSWORD ;
+            redhat/rhn username | REDHAT_USERNAME ;
+            redhat/rhn password | REDHAT_PASSWORD ;
             hashicorp-cloud-platform/packer project_id | HCP_PROJECT_ID ;
             hashicorp-cloud-platform/packer organization_id | HCP_ORGANIZATION_ID ;
             hashicorp-cloud-platform/packer client_id | HCP_CLIENT_ID ;
@@ -104,19 +104,23 @@ jobs:
           token: ${{ secrets.VAULT_TOKEN }}
           caCertificate: ${{ secrets.VAULT_CACERT }}
           secrets: |
-            vcenter/vcsa.lab.local username | TF_VAR_vsphere_user ;
-            vcenter/vcsa.lab.local password | TF_VAR_vsphere_password ;
-            vcenter/vcsa.lab.local hostname | TF_VAR_vsphere_server ;
-            guest_defaults/linux/guest username | TF_VAR_guest_username ;
-            guest_defaults/linux/guest password | TF_VAR_guest_password ;
-            guest_defaults/linux/admin username | TF_VAR_admin_username ;
-            guest_defaults/linux/admin password | TF_VAR_admin_password ;
-            redhat/rhn username | TF_VAR_guest_redhat_user ;
-            redhat/rhn password | TF_VAR_guest_redhat_password ;
+            vcenter/vcsa.lab.local username | VSPHERE_USERNAME ;
+            vcenter/vcsa.lab.local password | VSPHERE_PASSWORD ;
+            vcenter/vcsa.lab.local hostname | VSPHERE_SERVER ;
+            guest_defaults/linux/guest username | GUEST_USERNAME ;
+            guest_defaults/linux/guest password | GUSET_PASSWORD ;
+            guest_defaults/linux/admin username | ADMIN_USERNAME ;
+            guest_defaults/linux/admin password | ADMIN_PASSWORD ;
+            redhat/rhn username | REDHAT_USERNAME ;
+            redhat/rhn password | REDHAT_PASSWORD ;
             hashicorp-cloud-platform/packer project_id | HCP_PROJECT_ID ;
             hashicorp-cloud-platform/packer organization_id | HCP_ORGANIZATION_ID ;
             hashicorp-cloud-platform/packer client_id | HCP_CLIENT_ID ;
             hashicorp-cloud-platform/packer client_secret | HCP_CLIENT_SECRET ;
+            my-azure/personal client_id | ARM_CLIENT_ID ;
+            my-azure/personal client_secret | ARM_CLIENT_SECRET ;
+            my-azure/personal subscription_id | ARM_SUBSCRIPTION_ID ;
+            my-azure/personal tenant_id | ARM_TENANT_ID ;
 
       - name: Checkout Repository
         uses: actions/checkout@v2

@@ -13,7 +13,7 @@ terraform {
 }
 
 provider "vsphere" {
-  user                 = var.vsphere_user
+  user                 = var.vsphere_usernamename
   password             = var.vsphere_password
   vsphere_server       = var.vsphere_server
   allow_unverified_ssl = true
@@ -24,13 +24,16 @@ variable "iteration_id" {
   type        = string
 }
 
-data "hcp_packer_image" "vm_clone" {
-  bucket_name    = "redhat"
-  cloud_provider = "vsphere"
-  # region = "Lab"
-  region       = var.vsphere_datacenter
-  iteration_id = var.iteration_id
-  # channel = "latest"
+data "hcp_packer_version" "vm_clone" {
+  bucket_name  = "redhat"
+  channel_name = "latest"
+}
+
+data "hcp_packer_artifact" "vm_clone" {
+  bucket_name         = "redhat"
+  platform            = "vsphere"
+  region              = var.vsphere_datacenter
+  version_fingerprint = data.hcp_packer_version.vm_clone.fingerprint
 }
 
 data "vsphere_datacenter" "dc" {
@@ -53,7 +56,7 @@ data "vsphere_compute_cluster" "cluster" {
 }
 
 data "vsphere_virtual_machine" "template" {
-  name          = data.hcp_packer_image.vm_clone.cloud_image_id
+  name          = data.hcp_packer_artifact.vm_clone.external_identifier
   datacenter_id = data.vsphere_datacenter.dc.id
 }
 
@@ -96,7 +99,7 @@ resource "vsphere_virtual_machine" "vm_clone" {
   provisioner "remote-exec" {
     inline = [
       "sleep 60",
-      "echo '${var.guest_password}' | sudo -S subscription-manager register --username=${var.guest_redhat_user} --password=${var.guest_redhat_password}",
+      "echo '${var.guest_password}' | sudo -S subscription-manager register --username=${var.redhat_user} --password=${var.redhat_password}",
       "echo '${var.guest_password}' | sudo -S yum install -y nginx",
       "echo '${var.guest_password}' | sudo -S systemctl start nginx",
       "echo '${var.guest_password}' | sudo -S firewall-cmd --add-service=http",
